@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block titulo %}Cadastro{% endblock %}
+{% block conteudo %}
+<section class="cartao cartao-estreito">
+  <h1>Criar conta</h1>
+  <p class="sub">Cadastre seu mercado ou estabelecimento.</p>
+  <form method="post" class="form">
+    <label>Nome do responsável ou do mercado
+      <input type="text" name="nome" value="{{ form.get('nome', '') }}" required minlength="3">
+    </label>
+    <label>E-mail
+      <input type="email" name="email" value="{{ form.get('email', '') }}" required>
+    </label>
+    <label>Senha <small>(mínimo de 6 caracteres)</small>
+      <input type="password" name="senha" required minlength="6">
+    </label>
+    <label>Confirme a senha
+      <input type="password" name="confirmacao" required minlength="6">
+    </label>
+    <button type="submit" class="btn">Criar conta</button>
+  </form>
+  <p class="nota">Já tem conta? <a href="{{ url_for('auth.login') }}">Entrar</a></p>
+</section>
+{% endblock %}

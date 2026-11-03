@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block titulo %}Página não encontrada{% endblock %}
+{% block conteudo %}
+<section class="cartao cartao-estreito">
+  <h1>Página não encontrada</h1>
+  <p>O endereço acessado não existe ou o produto não pertence à sua conta.</p>
+  <a class="btn" href="{{ url_for('dashboard.inicio') }}">Voltar ao início</a>
+</section>
+{% endblock %}

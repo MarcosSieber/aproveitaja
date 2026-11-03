@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Entrar{% endblock %}
+{% block conteudo %}
+<section class="cartao cartao-estreito">
+  <h1>Entrar</h1>
+  <p class="sub">Controle a validade dos seus produtos e reduza o desperdício.</p>
+  <form method="post" class="form">
+    <label>E-mail
+      <input type="email" name="email" value="{{ email }}" required autofocus>
+    </label>
+    <label>Senha
+      <input type="password" name="senha" required>
+    </label>
+    <button type="submit" class="btn">Entrar</button>
+  </form>
+  <p class="nota">Ainda não tem conta? <a href="{{ url_for('auth.cadastro') }}">Cadastre-se</a></p>
+</section>
+{% endblock %}

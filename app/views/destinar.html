@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block titulo %}Destinar produto{% endblock %}
+{% block conteudo %}
+<section class="cartao cartao-medio">
+  <h1>Destinar: {{ produto['nome'] }}</h1>
+  <p class="sub">Estoque atual: <strong>{{ produto['quantidade']|qtd }} {{ produto['unidade'] }}</strong>
+     · Validade: <strong>{{ produto['data_validade']|data_br }}</strong></p>
+  <form method="post" class="form">
+    <fieldset class="opcoes">
+      <legend>Para onde vai o produto?</legend>
+      {% for valor, rotulo in tipos.items() %}
+      <label class="opcao">
+        <input type="radio" name="tipo" value="{{ valor }}" {{ 'checked' if form.get('tipo') == valor }} required>
+        {{ rotulo }}
+      </label>
+      {% endfor %}
+    </fieldset>
+    <label>Quantidade ({{ produto['unidade'] }})
+      <input type="number" name="quantidade" value="{{ form.get('quantidade', '') }}"
+             step="0.01" min="0.01" max="{{ produto['quantidade'] }}" required>
+    </label>
+    <label>Observação <small>(opcional)</small>
+      <input type="text" name="observacao" value="{{ form.get('observacao', '') }}" maxlength="255"
+             placeholder="Ex.: doado para a ONG do bairro">
+    </label>
+    <div class="botoes">
+      <a class="btn btn-secundario" href="{{ url_for('dashboard.index') }}">Cancelar</a>
+      <button type="submit" class="btn">Registrar destinação</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block titulo %}Produtos{% endblock %}
+{% block conteudo %}
+<div class="cabecalho">
+  <h1>Produtos em estoque</h1>
+  <a class="btn" href="{{ url_for('produtos.novo') }}">+ Novo produto</a>
+</div>
+
+<form method="get" class="filtros">
+  <input type="search" name="busca" value="{{ busca }}" placeholder="Buscar por nome">
+  <select name="status">
+    <option value="">Todas as situações</option>
+    <option value="vencido" {{ 'selected' if status == 'vencido' }}>Vencidos</option>
+    <option value="atencao" {{ 'selected' if status == 'atencao' }}>Vencem em até 3 dias</option>
+    <option value="ok" {{ 'selected' if status == 'ok' }}>Dentro da validade</option>
+  </select>
+  <button type="submit" class="btn btn-secundario">Filtrar</button>
+</form>
+
+<section class="cartao">
+  {% if produtos %}
+  <div class="tabela-rolagem">
+    <table>
+      <thead><tr><th>Produto</th><th>Estoque</th><th>Preço</th><th>Validade</th><th>Situação</th><th>Ações</th></tr></thead>
+      <tbody>
+      {% for p in produtos %}
+        <tr>
+          <td>{{ p.nome }}<br><small>{{ p.categoria }}</small></td>
+          <td>{{ p.quantidade|qtd }} {{ p.unidade }}</td>
+          <td>{{ p.preco|moeda }}</td>
+          <td>{{ p.data_validade|data_br }}</td>
+          <td><span class="selo {{ p.status }}">{{ {'vencido': 'Vencido', 'atencao': 'Atenção', 'ok': 'OK'}[p.status] }}</span></td>
+          <td class="acoes">
+            <a class="btn btn-pequeno" href="{{ url_for('produtos.destinar', produto_id=p.id) }}">Destinar</a>
+            <a class="btn btn-pequeno btn-secundario" href="{{ url_for('produtos.editar', produto_id=p.id) }}">Editar</a>
+            <form method="post" action="{{ url_for('produtos.excluir', produto_id=p.id) }}"
+                  data-confirmar="Excluir o produto &quot;{{ p.nome }}&quot;? Esta ação não pode ser desfeita.">
+              <button type="submit" class="btn btn-pequeno btn-perigo">Excluir</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="vazio">Nenhum produto encontrado.</p>
+  {% endif %}
+</section>
+{% endblock %}

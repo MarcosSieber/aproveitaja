@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}{{ titulo }}{% endblock %}
+{% block conteudo %}
+<section class="cartao cartao-medio">
+  <h1>{{ titulo }}</h1>
+  <form method="post" class="form">
+    <label>Nome do produto
+      <input type="text" name="nome" value="{{ form.get('nome', '') }}" required maxlength="100">
+    </label>
+    <div class="linha">
+      <label>Categoria
+        <select name="categoria" required>
+          <option value="">Selecione…</option>
+          {% for c in categorias %}
+          <option value="{{ c }}" {{ 'selected' if form.get('categoria') == c }}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Data de validade
+        <input type="date" name="data_validade" value="{{ form.get('data_validade', '') }}" required>
+      </label>
+    </div>
+    <div class="linha">
+      <label>Quantidade
+        <input type="number" name="quantidade" value="{{ form.get('quantidade', '') }}" step="0.01" min="0.01" required>
+      </label>
+      <label>Unidade
+        <select name="unidade" required>
+          {% for u in unidades %}
+          <option value="{{ u }}" {{ 'selected' if form.get('unidade') == u }}>{{ u }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Preço unitário (R$)
+        <input type="number" name="preco" value="{{ form.get('preco', '') }}" step="0.01" min="0">
+      </label>
+    </div>
+    <div class="botoes">
+      <a class="btn btn-secundario" href="{{ url_for('produtos.listar') }}">Cancelar</a>
+      <button type="submit" class="btn">Salvar</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

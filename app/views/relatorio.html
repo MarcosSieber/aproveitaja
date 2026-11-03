@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block titulo %}Relatório{% endblock %}
+{% block conteudo %}
+<h1>Relatório de aproveitamento</h1>
+
+<div class="indicadores">
+  <div class="indicador ok"><strong>{{ dados.percentual|qtd }}%</strong><span>dos itens destinados não foram para o lixo</span></div>
+  <div class="indicador neutro"><strong>{{ dados.aproveitado|qtd }}</strong><span>unidades/kg/L aproveitados</span></div>
+  <div class="indicador neutro"><strong>{{ dados.valor_recuperado|moeda }}</strong><span>recuperados em promoções</span></div>
+</div>
+
+<section class="cartao">
+  <h2>Por tipo de destinação</h2>
+  <div class="barras">
+    {% for tipo, info in dados.por_tipo.items() %}
+    {% set pct = (info.quantidade / dados.total * 100) if dados.total else 0 %}
+    <div class="barra-linha">
+      <span class="barra-rotulo">{{ info.rotulo }}</span>
+      <div class="barra"><div class="barra-preenchida {{ tipo }}" style="width: {{ pct|round(1) }}%"></div></div>
+      <span class="barra-valor">{{ info.quantidade|qtd }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cartao">
+  <h2>Últimas destinações</h2>
+  {% if historico %}
+  <div class="tabela-rolagem">
+    <table>
+      <thead><tr><th>Data</th><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Observação</th></tr></thead>
+      <tbody>
+      {% for d in historico %}
+        <tr>
+          <td>{{ d.data|data_br }}</td>
+          <td>{{ d.produto }}</td>
+          <td>{{ tipos[d.tipo] }}</td>
+          <td>{{ d.quantidade|qtd }} {{ d.unidade }}</td>
+          <td>{{ d.observacao or '—' }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <p class="vazio">Nenhuma destinação registrada ainda.</p>
+  {% endif %}
+</section>
+{% endblock %}

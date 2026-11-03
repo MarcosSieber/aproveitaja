@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %}Dicas de reaproveitamento{% endblock %}
+{% block conteudo %}
+<h1>Dicas de reaproveitamento</h1>
+<p class="sub">Receitas simples para aproveitar alimentos próximos do vencimento ou partes que costumam ir para o lixo.</p>
+<div class="grade-dicas">
+  {% for categoria, lista in dicas.items() %}
+  <section class="cartao">
+    <h2>{{ categoria }}</h2>
+    {% for nome, descricao in lista %}
+    <h3>{{ nome }}</h3>
+    <p>{{ descricao }}</p>
+    {% endfor %}
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}
