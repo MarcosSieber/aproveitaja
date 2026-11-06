@@ -24,7 +24,7 @@ Alinhado aos ODS 3 (Saúde e Bem-Estar) e 12 (Consumo e Produção Responsáveis
 - **Front-end:** HTML5 (templates Jinja2), CSS3 responsivo e JavaScript
 - **Banco de dados:** SQLite (script em `database/schema.sql`)
 - **Testes:** pytest (48 testes unitários e de integração)
-- **Hospedagem:** Render (plano gratuito)
+- **Execução:** local, com o servidor do Flask (publicação no Render prevista)
 
 ## Estrutura do repositório
 
@@ -95,11 +95,11 @@ git init
 git add .
 git commit -m "AproveitaJá: versão final com testes e documentação"
 git branch -M main
-git remote add origin https://github.com/SEU-USUARIO/aproveitaja.git
+git remote add origin https://github.com/MarcosSieber/aproveitaja.git
 git push -u origin main
 ```
 
-## Hospedagem (Render)
+## Hospedagem (opcional, Render)
 
 1. Crie uma conta em https://render.com e clique em **New > Web Service**, conectando este repositório.
 2. **Build command:** `pip install -r requirements.txt`
@@ -110,5 +110,6 @@ git push -u origin main
 
 ## Links
 
-- Sistema em funcionamento: https://aproveitaja.onrender.com
-- Vídeo de apresentação: *(adicionar link)*
+- Repositório: https://github.com/MarcosSieber/aproveitaja
+- Vídeo 1, solução completa (narrado): https://drive.google.com/file/d/1XlTw_M7EjpF0pJ7CqO-5bIEIwupcpVZU/view?usp=sharing
+- Vídeo 2, solução atualizada após os testes: https://drive.google.com/file/d/1Jsq6Tsu6S1nfDdKq0REKQt8DtKVUpmEE/view?usp=sharing

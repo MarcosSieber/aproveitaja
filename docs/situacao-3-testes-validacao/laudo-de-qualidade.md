@@ -31,7 +31,7 @@ A rodada 1.0 passou em 100% dos testes mesmo com 3 bugs graves. Isso mostra que 
 ## 5. Limitações conhecidas (não escondidas)
 - Não há recuperação de senha.
 - Os bugs BUG-04 e BUG-05 envolvem o comportamento do navegador e foram validados por reteste manual, não por teste automatizado. A evolução prevista é adicionar testes E2E com Playwright.
-- No plano gratuito do Render o SQLite fica em disco temporário. Para produção, o recomendado é migrar para PostgreSQL.
+- O sistema ainda não está publicado em um servidor na internet: ele roda localmente, seguindo o README. Para publicar em produção, o recomendado é usar o Render com PostgreSQL.
 
 ## 6. Parecer
 O sistema **atende aos requisitos Must e Should** e está apto para uso piloto em mercados de bairro.

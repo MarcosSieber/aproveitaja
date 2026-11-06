@@ -2,7 +2,7 @@
 
 > Modelo enviado aos testadores (também publicado no Google Forms). Preencha um formulário por sessão de teste.
 
-**Acesso ao sistema:** https://aproveitaja.onrender.com
+**Acesso ao sistema:** execute localmente seguindo o README (https://github.com/MarcosSieber/aproveitaja#como-rodar-no-vs-code)
 **Login de teste:** crie sua própria conta em "Cadastre-se" (ou use `demo@aproveitaja.com` / `demo123`)
 
 ---
